@@ -1,1 +1,49 @@
+.main {
+  width: 600px;
+  height: 600px;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+}
+.main__block-1 {
+  width: 100%;
+  height: 90%;
+  background-color: sandybrown;
+  display: flex;
+  align-items: center;
+}
+.main__block-2 {
+  width: 100%;
+  height: 10%;
+  background-color: saddlebrown;
+  display: flex;
+}
+
+.main-content__block-A {
+  width: 70%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  background-color: green;
+}
+.main-content__square-containter {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: yellow;
+}
+.main-content__single-block {
+  width: 20px;
+  height: 20px;
+  background-color: blue;
+  border-color: black;
+  border-width: 1em;
+}
+.main-content__block-B {
+  width: 30%;
+  height: 40%;
+  display: flex;
+  background-color: greenyellow;
+}
+
 /*# sourceMappingURL=styles.css.map */
