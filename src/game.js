@@ -1,7 +1,7 @@
-let actualBorrowersField = [];
-let newBorrowersField = [];
-let borrowersData = [];
-let fieldDimentions = [];
+const actualBorrowersField = [];
+const newBorrowersField = [];
+const borrowersData = [];
+const fieldDimentions = [];
 
 function generateNewBorrowersField(dimentions) {
   return Array(dimentions[1])
@@ -88,30 +88,24 @@ function checkBorrowerNeighbors(borrowersField) {
   return neighborList;
 }
 
-function godChangesLives(borrowersData, field) {
+function godChangesLives(borrowers, field) {
   const borrowerChanges = [];
   let counter = 0;
 
   for (let y = 0; y < field[1]; y++) {
     borrowerChanges.splice(y, 0, []);
     for (let x = 0; x < field[0]; x++) {
-      if (borrowersData[counter][1] === y) {
-        if (borrowersData[counter][0] === x) {
-          if (borrowersData[counter][2] === true) {
-            if (
-              borrowersData[counter][3] === 2 ||
-              borrowersData[counter][3] === 3
-            ) {
+      if (borrowers[counter][1] === y) {
+        if (borrowers[counter][0] === x) {
+          if (borrowers[counter][2] === true) {
+            if (borrowers[counter][3] === 2 || borrowers[counter][3] === 3) {
               borrowerChanges[y].push(true);
-            } else if (
-              borrowersData[counter][3] < 2 ||
-              borrowersData[counter][3] > 3
-            ) {
+            } else if (borrowers[counter][3] < 2 || borrowers[counter][3] > 3) {
               borrowerChanges[y].push(false);
             }
           }
-          if (borrowersData[counter][2] === false) {
-            if (borrowersData[counter][3] === 3) {
+          if (borrowers[counter][2] === false) {
+            if (borrowers[counter][3] === 3) {
               borrowerChanges[y].push(true);
             } else {
               borrowerChanges[y].push(false);
@@ -126,7 +120,7 @@ function godChangesLives(borrowersData, field) {
   return borrowerChanges;
 }
 
-actualBorrowersField = generateNewBorrowersField(fieldDimentions);
+/* actualBorrowersField = generateNewBorrowersField(fieldDimentions);
 
 fieldDimentions = mesureBorrowersField(actualBorrowersField);
 
@@ -134,4 +128,11 @@ borrowersData = checkBorrowerNeighbors(actualBorrowersField);
 
 newBorrowersField = godChangesLives(borrowersData, fieldDimentions);
 
-actualBorrowersField = generateNewBorrowersField(fieldDimentions);
+actualBorrowersField = generateNewBorrowersField(fieldDimentions); */
+
+module.exports = {
+  generateNewBorrowersField,
+  mesureBorrowersField,
+  checkBorrowerNeighbors,
+  godChangesLives,
+};
