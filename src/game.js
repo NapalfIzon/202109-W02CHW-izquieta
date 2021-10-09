@@ -1,18 +1,13 @@
-const actualBorrowersField = [
-  [false, false, false, false, false, false, false, false, false, false],
-  [false, true, true, true, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false, false, false],
-  [false, false, false, false, true, false, false, false, false, false],
-  [false, false, false, false, true, false, false, false, false, false],
-  [false, false, false, false, true, false, false, false, false, false],
-  [false, false, false, false, false, false, true, true, true, false],
-  [false, true, false, false, false, false, false, false, false, false],
-  [false, true, false, false, false, false, false, false, false, false],
-  [false, true, false, false, false, false, false, false, false, false],
-];
+let actualBorrowersField = [];
 let newBorrowersField = [];
-const borrowerNeighbors = []; // [x, y, borrowerStatus, neighborCounter]
-let fieldDimentions;
+let borrowersData = [];
+let fieldDimentions = [];
+
+function generateNewBorrowersField(dimentions) {
+  return Array(dimentions[1])
+    .fill(false)
+    .map(() => Array(dimentions[0]).fill(false));
+}
 
 function mesureBorrowersField(field) {
   return [field[0].length, field.length];
@@ -131,22 +126,12 @@ function godChangesLives(borrowersData, field) {
   return borrowerChanges;
 }
 
+actualBorrowersField = generateNewBorrowersField(fieldDimentions);
+
 fieldDimentions = mesureBorrowersField(actualBorrowersField);
 
 borrowersData = checkBorrowerNeighbors(actualBorrowersField);
 
 newBorrowersField = godChangesLives(borrowersData, fieldDimentions);
 
-console.log("Este es el campo actual de borrowers");
-console.log("------------------------------------");
-
-console.table(actualBorrowersField);
-
-console.log(
-  "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-);
-console.log(" ");
-console.log("Este es el campo de borrowers después de la criba");
-console.log("-------------------------------------------------");
-
-console.table(newBorrowersField);
+actualBorrowersField = generateNewBorrowersField(fieldDimentions);
