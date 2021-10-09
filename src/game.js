@@ -1,4 +1,4 @@
-const originalBorrowersField = [
+const actualBorrowersField = [
   [false, false, false, false, false, false, false, false, false, false],
   [false, false, false, false, false, false, false, false, false, false],
   [false, false, false, false, false, false, false, false, false, false],
@@ -10,94 +10,83 @@ const originalBorrowersField = [
   [false, false, false, false, false, false, false, false, false, false],
   [false, false, false, false, false, false, false, false, false, false],
 ];
-const actualBorrowersField = [];
-const newBorrowersField = [];
-const borrowerNeighbors = [];
+let newBorrowersField = [];
+const borrowerNeighbors = []; // [x, y, borrowerStatus, neighborCounter]
+let fieldDimentions;
 
-/* function checkBorrowers(actualBorrowerField) {
-  const targetBorrowers = [];
-  for (const i in actualBorrowerField) {
-    for (const j in actualBorrowerField[i]) {
-      if (actualBorrowerField[i][j]) {
-        targetBorrowers.push(i, j, true);
-      } else {
-        targetBorrowers.push(i, j, false);
-      }
-    }
-  }
+function mesureBorrowersField(field) {
+  return [field[0].length, field.length];
+}
 
-  return targetBorrowers;
-} */
-
-function checkNeighbor(actualBorrowersField) {
+function checkBorrowerNeighbors(borrowersField) {
   const neighborList = [];
   let statusNeighborCounter = 0;
   // condition ? exprIfTrue : exprIfFalse
-  for (let y = 0; y < actualBorrowersField.length; y++) {
-    for (let x = 0; x < actualBorrowersField[x].length; x++) {
+  for (let y = 0; y < borrowersField.length; y++) {
+    for (let x = 0; x < borrowersField[y].length; x++) {
       if (y === 0) {
         if (x === 0) {
-          if (actualBorrowersField[y][x + 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y + 1][x]) statusNeighborCounter++;
-          if (actualBorrowersField[y + 1][x + 1]) statusNeighborCounter++;
+          if (borrowersField[y][x + 1]) statusNeighborCounter++;
+          if (borrowersField[y + 1][x]) statusNeighborCounter++;
+          if (borrowersField[y + 1][x + 1]) statusNeighborCounter++;
         }
-        if (x - 1 >= 1 && x + 1 < actualBorrowersField.length) {
-          if (actualBorrowersField[y][x - 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y][x + 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y + 1][x - 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y + 1][x]) statusNeighborCounter++;
-          if (actualBorrowersField[y + 1][x + 1]) statusNeighborCounter++;
+        if (x - 1 >= 1 && x + 1 < borrowersField.length) {
+          if (borrowersField[y][x - 1]) statusNeighborCounter++;
+          if (borrowersField[y][x + 1]) statusNeighborCounter++;
+          if (borrowersField[y + 1][x - 1]) statusNeighborCounter++;
+          if (borrowersField[y + 1][x]) statusNeighborCounter++;
+          if (borrowersField[y + 1][x + 1]) statusNeighborCounter++;
         }
-        if (x === actualBorrowersField.length - 1) {
-          if (actualBorrowersField[y][x + 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y + 1][x]) statusNeighborCounter++;
-          if (actualBorrowersField[y + 1][x + 1]) statusNeighborCounter++;
+        if (x === borrowersField.length - 1) {
+          if (borrowersField[y][x + 1]) statusNeighborCounter++;
+          if (borrowersField[y + 1][x]) statusNeighborCounter++;
+          if (borrowersField[y + 1][x + 1]) statusNeighborCounter++;
         }
-      } else if (y === actualBorrowersField.length - 1) {
+      } else if (y === borrowersField.length - 1) {
         if (x === 0) {
-          if (actualBorrowersField[y][x + 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y - 1][x]) statusNeighborCounter++;
-          if (actualBorrowersField[y - 1][x + 1]) statusNeighborCounter++;
+          if (borrowersField[y][x + 1]) statusNeighborCounter++;
+          if (borrowersField[y - 1][x]) statusNeighborCounter++;
+          if (borrowersField[y - 1][x + 1]) statusNeighborCounter++;
         }
-        if (x - 1 >= 1 && x + 1 < actualBorrowersField.length) {
-          if (actualBorrowersField[y][x - 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y][x + 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y - 1][x - 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y - 1][x]) statusNeighborCounter++;
-          if (actualBorrowersField[y - 1][x + 1]) statusNeighborCounter++;
+        if (x - 1 >= 1 && x + 1 < borrowersField.length) {
+          if (borrowersField[y][x - 1]) statusNeighborCounter++;
+          if (borrowersField[y][x + 1]) statusNeighborCounter++;
+          if (borrowersField[y - 1][x - 1]) statusNeighborCounter++;
+          if (borrowersField[y - 1][x]) statusNeighborCounter++;
+          if (borrowersField[y - 1][x + 1]) statusNeighborCounter++;
         }
-        if (x === actualBorrowersField.length - 1) {
-          if (actualBorrowersField[y][x - 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y - 1][x]) statusNeighborCounter++;
-          if (actualBorrowersField[y - 1][x - 1]) statusNeighborCounter++;
+        if (x === borrowersField.length - 1) {
+          if (borrowersField[y][x - 1]) statusNeighborCounter++;
+          if (borrowersField[y - 1][x]) statusNeighborCounter++;
+          if (borrowersField[y - 1][x - 1]) statusNeighborCounter++;
         }
       } else {
         if (x === 0) {
-          if (actualBorrowersField[y][x + 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y - 1][x]) statusNeighborCounter++;
-          if (actualBorrowersField[y - 1][x + 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y + 1][x]) statusNeighborCounter++;
-          if (actualBorrowersField[y + 1][x + 1]) statusNeighborCounter++;
+          if (borrowersField[y][x + 1]) statusNeighborCounter++;
+          if (borrowersField[y - 1][x]) statusNeighborCounter++;
+          if (borrowersField[y - 1][x + 1]) statusNeighborCounter++;
+          if (borrowersField[y + 1][x]) statusNeighborCounter++;
+          if (borrowersField[y + 1][x + 1]) statusNeighborCounter++;
         }
-        if (x - 1 >= 1 && x + 1 < actualBorrowersField.length) {
-          if (actualBorrowersField[y - 1][x - 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y - 1][x]) statusNeighborCounter++;
-          if (actualBorrowersField[y - 1][x + 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y][x - 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y][x + 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y + 1][x - 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y + 1][x]) statusNeighborCounter++;
-          if (actualBorrowersField[y + 1][x + 1]) statusNeighborCounter++;
+        if (x - 1 >= 1 && x + 1 < borrowersField.length) {
+          if (borrowersField[y - 1][x - 1]) statusNeighborCounter++;
+          if (borrowersField[y - 1][x]) statusNeighborCounter++;
+          if (borrowersField[y - 1][x + 1]) statusNeighborCounter++;
+          if (borrowersField[y][x - 1]) statusNeighborCounter++;
+          if (borrowersField[y][x + 1]) statusNeighborCounter++;
+          if (borrowersField[y + 1][x - 1]) statusNeighborCounter++;
+          if (borrowersField[y + 1][x]) statusNeighborCounter++;
+          if (borrowersField[y + 1][x + 1]) statusNeighborCounter++;
         }
-        if (x === actualBorrowersField.length - 1) {
-          if (actualBorrowersField[y - 1][x + 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y - 1][x]) statusNeighborCounter++;
-          if (actualBorrowersField[y][x - 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y + 1][x - 1]) statusNeighborCounter++;
-          if (actualBorrowersField[y + 1][x]) statusNeighborCounter++;
+        if (x === borrowersField.length - 1) {
+          if (borrowersField[y - 1][x + 1]) statusNeighborCounter++;
+          if (borrowersField[y - 1][x]) statusNeighborCounter++;
+          if (borrowersField[y][x - 1]) statusNeighborCounter++;
+          if (borrowersField[y + 1][x - 1]) statusNeighborCounter++;
+          if (borrowersField[y + 1][x]) statusNeighborCounter++;
         }
       }
-      neighborList.push([x, y, statusNeighborCounter]);
+      neighborList.push([x, y, borrowersField[y][x], statusNeighborCounter]);
       statusNeighborCounter = 0;
     }
   }
@@ -105,12 +94,46 @@ function checkNeighbor(actualBorrowersField) {
   return neighborList;
 }
 
-function makeBorrowerChanges(liveBorrowers, borrowerNeighbors) {}
+function godChangesLives(borrowersData, field) {
+  const borrowerChanges = [];
 
-function makeNewBorrowerField(borrowerStatus, borrowerPosition) {}
+  for (let y = 0; y < field[1]; y++) {
+    borrowerChanges.splice(y, 0, []);
+    for (let x = 0; x < field[0]; x++) {
+      if (borrowersData[y][2] === true) {
+        if (borrowersData[y][3] === 2 || borrowersData[y][3] === 3) {
+          borrowerChanges[y].push(true);
+        } else if (borrowersData[y][3] < 2 || borrowersData[y][3] > 3) {
+          borrowerChanges[y].push(false);
+        }
+      }
+      if (borrowersData[y][2] === false) {
+        if (borrowersData[y][3] === 3) {
+          borrowerChanges[y].push(true);
+        }
+      }
+    }
+  }
 
-actualBorrowerField = originalBorrowerField;
+  return borrowerChanges;
+}
 
-statusBorrowers = checkBorrowers(borrowersField);
+fieldDimentions = mesureBorrowersField(actualBorrowersField);
 
-console.table(originalGameTable);
+borrowersData = checkBorrowerNeighbors(actualBorrowersField);
+
+newBorrowersField = godChangesLives(borrowersData, fieldDimentions);
+
+console.log("Este es el campo actual de borrowers");
+console.log("------------------------------------");
+
+console.table(actualBorrowersField);
+
+console.log(
+  "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+);
+console.log(" ");
+console.log("Este es el campo de borrowers después de la criba");
+console.log("-------------------------------------------------");
+
+console.log(newBorrowersField);
