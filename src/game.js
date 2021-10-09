@@ -120,16 +120,6 @@ function godChangesLives(borrowers, field) {
   return borrowerChanges;
 }
 
-/* actualBorrowersField = generateNewBorrowersField(fieldDimentions);
-
-fieldDimentions = mesureBorrowersField(actualBorrowersField);
-
-borrowersData = checkBorrowerNeighbors(actualBorrowersField);
-
-newBorrowersField = godChangesLives(borrowersData, fieldDimentions);
-
-actualBorrowersField = generateNewBorrowersField(fieldDimentions); */
-
 module.exports = {
   generateNewBorrowersField,
   mesureBorrowersField,
