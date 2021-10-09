@@ -108,3 +108,7 @@ dist
 /basura
 
 .DS_Store
+
+/build/styles.css
+
+/build/styles.css.map
