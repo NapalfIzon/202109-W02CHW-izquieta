@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/icons/borrowers_icon.png"></link>
+    <title>Borrower's Game of life</title>
+    <link rel="stylesheet" href="/build/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> 
+    <script type="text/javascript" src="/src/gameDom.js"></script>
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="main-header__title-box">
+        <h1 class="title-text">Borrower's game of life</h1>
+        <img class="title-logo" src="/images/borrowers_title_001.png" alt="The Borrower's game of life">
+      </div>
+    </header>
+    <main class="main">
+      <article class="main__block-1">
+        <section class="main-content__block-A">
+          <div class="main-content__square-containter">
+          </div>
+        </section>
+        <section class="main-content__block-B">
+          <div class="main-content__logo">
+            <img src="/images/game_of_life_logo.png" alt="Game of life">
+          </div>
+          <div class="main-content__generate-field">
+            <div class="main-content__generate-field__dimentions">
+              <div class="main-content__generate-field__dimentions-selector">
+                <label for="valueX">Width</label>
+                <select class="main-content__generate-field__dimention-X" name="valueX" id="valueX">
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+              <div class="main-content__generate-field__dimentions-selector">
+                <label for="valueY">Height</label>
+                <select class="main-content__generate-field__dimentions-Y" name="valueY" id="valueY">
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select> 
+              </div>
+            </div>
+            <div class="main-content__generate-field__dimentions-button">
+              <input
+                class="main-content__generate-field--button"
+                type="button"
+                value="Create the borrowers field"
+                onclick="generateGameField()"
+              />
+            </div>
+          </div>
+          <div class="main-content__start disappear">
+            <input
+                class="main-content__start--button"
+                type="button"
+                value="Start"
+                onclick="startGame()"
+              />
+          </div>
+          <div class="main-content__stop disappear">
+            <input
+                class="main-content__stop--button"
+                type="button"
+                value="Stop"
+                onclick="stopGame()"
+              />
+          </div>
+          <div class="main-content__reset disappear">
+            <input
+                class="main-content__reset--button"
+                type="button"
+                value="Reset"
+                onclick="resetGame()"
+              />
+          </div>
+        </section>
+      </article>
+      <article class="main__block-2"></article>
+    </main>
+    <footer class="main-footer">
+      <p class="copyright">Designed for <a href="https://isdicoders.com/es">ISDI Coders</a> by <a href="https://github.com/NapalfIzon/"> Napoleón Izquieta</a>.</p>
+    </footer>
+  </body>
+</html>
