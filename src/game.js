@@ -125,4 +125,5 @@ module.exports = {
   mesureBorrowersField,
   checkBorrowerNeighbors,
   godChangesLives,
+  fieldDimentions,
 };
