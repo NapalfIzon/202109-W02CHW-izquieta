@@ -70,11 +70,39 @@ body {
     background-color: #224b00;
     tbody {
       tr {
-        td {
+        .grass {
           width: 40px;
           height: 40px;
           text-align: center;
           background: url(/images/grass.png);
+          border-radius: 5px;
+        }
+        .borrower01 {
+          width: 40px;
+          height: 40px;
+          text-align: center;
+          background: url(/images/borrower01.png);
+          border-radius: 5px;
+        }
+        .borrower02 {
+          width: 40px;
+          height: 40px;
+          text-align: center;
+          background: url(/images/borrower02.png);
+          border-radius: 5px;
+        }
+        .borrower03 {
+          width: 40px;
+          height: 40px;
+          text-align: center;
+          background: url(/images/borrower03.png);
+          border-radius: 5px;
+        }
+        .borrower04 {
+          width: 40px;
+          height: 40px;
+          text-align: center;
+          background: url(/images/borrower04.png);
           border-radius: 5px;
         }
       }
