@@ -73,7 +73,7 @@ function checkBorrowerNeighbors(borrowersField) {
           if (borrowersField[y + 1][x + 1]) statusNeighborCounter++;
         }
         if (x === borrowersField.length - 1) {
-          if (borrowersField[y - 1][x + 1]) statusNeighborCounter++;
+          if (borrowersField[y - 1][x - 1]) statusNeighborCounter++;
           if (borrowersField[y - 1][x]) statusNeighborCounter++;
           if (borrowersField[y][x - 1]) statusNeighborCounter++;
           if (borrowersField[y + 1][x - 1]) statusNeighborCounter++;
