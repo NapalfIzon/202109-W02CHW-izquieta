@@ -23,23 +23,43 @@
       <article class="main__block-1">
         <section class="main-content__block-A">
           <div class="main-content__square-containter">
-            <!--
-            <div
-              class="
-                main-content__single-block main-content__single-block--border
-              "
-            ></div>
-            <div class="main-content__single-block"></div> -->
           </div>
         </section>
         <section class="main-content__block-B">
+          <div class="main-content__generate-field">
+            <div class="main-content__generate-field__dimentions">
+              <label for="valueX">Width</label>
+              <select class="main-content__generate-field__dimention-X" name="valueX" id="valueX">
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+              <label for="valueY">Height</label>
+              <select class="main-content__generate-field__dimentions-Y" name="valueY" id="valueY">
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+          </div>
+        </div>
           <article class="main-content__generate-field">
             <input
               class="main-content__generate-field--button"
               type="button"
-              value="Generate a table."
-              onclick="generate_table()"
+              value="Create the borrowers field"
+              onclick="generateGameField()"
             />
+          </div>
           </article>
         </section>
       </article>

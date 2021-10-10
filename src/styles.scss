@@ -54,7 +54,7 @@ body {
 .main-content {
   &__block-A {
     width: 70%;
-    height: 60%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     background-color: green;
@@ -62,15 +62,25 @@ body {
   &__square-containter {
     width: 100%;
     height: 100%;
-    display: flex;
     background-color: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   &__single-block {
-    width: 20px;
-    height: 20px;
     background-color: blue;
     border-color: black;
-    border-width: 1em;
+    border-spacing: 0;
+    tbody {
+      tr {
+        td {
+          width: 40px;
+          height: 40px;
+          text-align: center;
+          background: url(/images/grass.png);
+        }
+      }
+    }
   }
   &__block-B {
     width: 30%;
