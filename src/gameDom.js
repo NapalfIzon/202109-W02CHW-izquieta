@@ -10,17 +10,14 @@ function generateNewBorrowersField(dimentions) {
     .map(() => Array(dimentions[0]).fill(false));
 }
 
-function placeBorrowersInField(borrowers, field) {
-  const miniField = [];
+function placeBorrowersInField(borrowersAnalisis, field) {
   counter = 0;
   for (let y = 0; y < field.length; y++) {
     for (let x = 0; x < field[0].length; x++) {
-      miniField[y][x] = field[y].splice([x], 1, borrowers[counter][2]);
+      field[y].splice([x], 1, borrowersAnalisis[counter][2]);
       counter++;
     }
   }
-
-  return miniField;
 }
 
 function checkBorrowerNeighbors(borrowersField) {
@@ -83,7 +80,7 @@ function checkBorrowerNeighbors(borrowersField) {
           if (borrowersField[y + 1][x + 1]) statusNeighborCounter++;
         }
         if (x === borrowersField.length - 1) {
-          if (borrowersField[y - 1][x + 1]) statusNeighborCounter++;
+          if (borrowersField[y - 1][x - 1]) statusNeighborCounter++;
           if (borrowersField[y - 1][x]) statusNeighborCounter++;
           if (borrowersField[y][x - 1]) statusNeighborCounter++;
           if (borrowersField[y + 1][x - 1]) statusNeighborCounter++;
@@ -98,24 +95,30 @@ function checkBorrowerNeighbors(borrowersField) {
   return neighborList;
 }
 
-function godChangesLives(borrowers, field) {
+function godChangesLives(borrowersDestiny, field) {
   const borrowerChanges = [];
   let counter = 0;
 
   for (let y = 0; y < field[1]; y++) {
     borrowerChanges.splice(y, 0, []);
     for (let x = 0; x < field[0]; x++) {
-      if (borrowers[counter][1] === y) {
-        if (borrowers[counter][0] === x) {
-          if (borrowers[counter][2] === true) {
-            if (borrowers[counter][3] === 2 || borrowers[counter][3] === 3) {
+      if (borrowersDestiny[counter][1] === y) {
+        if (borrowersDestiny[counter][0] === x) {
+          if (borrowersDestiny[counter][2] === true) {
+            if (
+              borrowersDestiny[counter][3] === 2 ||
+              borrowersDestiny[counter][3] === 3
+            ) {
               borrowerChanges[y].push(true);
-            } else if (borrowers[counter][3] < 2 || borrowers[counter][3] > 3) {
+            } else if (
+              borrowersDestiny[counter][3] < 2 ||
+              borrowersDestiny[counter][3] > 3
+            ) {
               borrowerChanges[y].push(false);
             }
           }
-          if (borrowers[counter][2] === false) {
-            if (borrowers[counter][3] === 3) {
+          if (borrowersDestiny[counter][2] === false) {
+            if (borrowersDestiny[counter][3] === 3) {
               borrowerChanges[y].push(true);
             } else {
               borrowerChanges[y].push(false);
@@ -285,14 +288,15 @@ function placeNewGenerationOfBorrowers(newField) {
 }
 
 function cicleOfLife() {
-  // debugger;
   actualBorrowersField = generateNewBorrowersField(fieldDimentions);
 
-  temporalField = placeBorrowersInField(borrowerStatus, actualBorrowersField);
+  placeBorrowersInField(borrowerStatus, actualBorrowersField);
 
-  borrowersList = checkBorrowerNeighbors(temporalField);
+  borrowersList = checkBorrowerNeighbors(actualBorrowersField);
 
-  actualBorrowersField = godChangesLives(borrowersList, temporalField);
+  temporalField = actualBorrowersField;
+
+  actualBorrowersField = godChangesLives(borrowersList, fieldDimentions);
 
   placeNewGenerationOfBorrowers(actualBorrowersField);
 
@@ -300,9 +304,15 @@ function cicleOfLife() {
 }
 
 function startGame() {
-  borrowers();
+  window.onclick = (startButton) => {
+    const startBtn = startButton.target.className;
 
-  cicleOfLife();
+    if (startBtn === "main-content__start--button") {
+      borrowers();
+
+      cicleOfLife();
+    }
+  };
 }
 
 function resetGame() {
