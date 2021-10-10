@@ -2,6 +2,12 @@ function generateGameField() {
   const gameField = document.getElementsByClassName(
     "main-content__square-containter"
   )[0];
+  const fieldDimentionSelectors = document.getElementsByClassName(
+    "main-content__generate-field"
+  )[0];
+  const startButton = document.getElementsByClassName("main-content__start")[0];
+  const stopButton = document.getElementsByClassName("main-content__stop")[0];
+  const resetButton = document.getElementsByClassName("main-content__reset")[0];
   const valueX = document.getElementById("valueX").value;
   const valueY = document.getElementById("valueY").value;
 
@@ -27,4 +33,15 @@ function generateGameField() {
   gameField.appendChild(table);
 
   table.setAttribute("class", "main-content__single-block");
+
+  fieldDimentionSelectors.setAttribute(
+    "class",
+    "main-content__generate-field disappear"
+  );
+
+  startButton.setAttribute("class", "main-content__start");
+
+  stopButton.setAttribute("class", "main-content__stop");
+
+  resetButton.setAttribute("class", "main-content__reset");
 }
