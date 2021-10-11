@@ -3,6 +3,7 @@ let actualBorrowersField = [];
 let borrowersList = [];
 let temporalField = [];
 let borrowerStatus = [];
+let loopTime = 0;
 
 function generateNewBorrowersField(dimentions) {
   return Array(dimentions[1])
@@ -304,15 +305,11 @@ function cicleOfLife() {
 }
 
 function startGame() {
-  window.onclick = (startButton) => {
-    const startBtn = startButton.target.className;
+  borrowers();
 
-    if (startBtn === "main-content__start--button") {
-      borrowers();
+  cicleOfLife();
 
-      cicleOfLife();
-    }
-  };
+  loopTime = setInterval(startGame, 500);
 }
 
 function resetGame() {
